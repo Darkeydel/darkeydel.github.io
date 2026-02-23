@@ -14,36 +14,10 @@ highlighter: rouge
 lsi: false
 safe: true
 
-# Academic Pages theme settings
-name: "Sanjit"
-author:
-  name: "Sanjit"
-  bio: "Security researcher"
-  location: "/"
-  avatar: "images/avatar.png"
-  links:
-    - label: "Email"
-      icon: "fas fa-envelope"
-      url: "mailto:sanjit@example.com"
-    - label: "LinkedIn"
-      icon: "fab fa-linkedin"
-      url: "https://linkedin.com/in/sanjit"
-    - label: "X (Twitter)"
-      icon: "fab fa-x-twitter"
-      url: "https://twitter.com/sanjit"
-
 # Navigation
 navigation:
   - title: "Home"
     url: "/"
-  - title: "Research & Things"
-    url: "/research-and-things/"
-  - title: "Thoughts"
-    url: "/thoughts/"
-  - title: "Writeups"
-    url: "/writeups/"
-  - title: "About"
-    url: "/about/"
 
 # Social links
 twitter:
