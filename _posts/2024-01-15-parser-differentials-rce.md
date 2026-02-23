@@ -155,8 +155,6 @@ The front-end and back-end disagree on where the request ends, allowing attacker
 
 Server-side template injection (SSTI) often involves parser differentials between the template engine and the underlying programming language.
 
-![Template Injection](/images/template-injection.png)
-
 ### Flask/Jinja2 Example
 
 In Flask applications, attackers can sometimes escape the template sandbox:
@@ -179,8 +177,6 @@ This traverses Python's object hierarchy to find classes that can execute system
 ## XML External Entity (XXE) Injection
 
 Different XML parsers handle external entities differently:
-
-![XXE Attack](/images/xxe-attack.png)
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -235,8 +231,6 @@ Some libraries don't properly validate the algorithm, allowing attackers to swit
 
 Different URL parsing libraries can interpret URLs differently:
 
-![URL Parser](/images/url-parser.png)
-
 ### Example: Scheme Confusion
 
 ```python
@@ -263,8 +257,6 @@ http://target.s3.amazonaws.com/vulnerable-param
 
 Different systems normalize Unicode differently, leading to security issues:
 
-![Unicode Normalization](/images/unicode-normalization.png)
-
 ### IDN Homograph Attacks
 
 ```python
@@ -284,8 +276,6 @@ Different systems normalize Unicode differently, leading to security issues:
 ## PHP Type Juggling
 
 PHP's type coercion creates parser differentials:
-
-![PHP Type Juggling](/images/php-type-juggling.png)
 
 ### Loose Comparison Attack
 
@@ -312,8 +302,6 @@ if (md5($password) == $stored_hash)  // Vulnerable!
 ## LDAP Injection
 
 Different LDAP implementations parse queries differently:
-
-![LDAP Injection](/images/ldap-injection.png)
 
 ```python
 # Injection payload
@@ -355,8 +343,6 @@ The same regex can be parsed differently by different engines:
 
 Different database systems parse SQL differently:
 
-![SQL Injection](/images/sql-injection.png)
-
 ```sql
 -- MySQL comment
 admin' --
@@ -377,8 +363,6 @@ admin' #
 
 Filesystem parsers handle paths differently:
 
-![Path Traversal](/images/path-traversal.png)
-
 ```python
 # Both may work
 ../../../etc/passwd
@@ -397,8 +381,6 @@ Filesystem parsers handle paths differently:
 ## Why This Matters
 
 The rise of **microservices** creates complex environments where a single HTTP request may be interpreted by multiple services differently—often with serious security implications.
-
-![Microservices Complexity](/images/microservices-complexity.png)
 
 ---
 
