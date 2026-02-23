@@ -1,7 +1,7 @@
-footer {
+footer, .site-footer, .footer, #footer, .page-footer {
   display: none !important;
-}
-
-.site-footer {
-  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
