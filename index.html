@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>darkeydel - Security Research</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.6; padding: 40px 20px; }
+    .container { max-width: 700px; margin: 0 auto; }
+    header { padding-bottom: 30px; border-bottom: 1px solid #222; margin-bottom: 40px; }
+    header h1 { font-size: 28px; font-weight: 600; margin-bottom: 10px; }
+    header a { color: #fff; text-decoration: none; }
+    header a:hover { text-decoration: none; }
+    nav { margin-top: 15px; }
+    nav a { color: #666; margin-right: 20px; font-size: 14px; }
+    nav a:hover { color: #999; }
+    .about { margin-bottom: 40px; }
+    .about p { color: #888; font-size: 16px; }
+    .posts h2 { font-size: 18px; margin-bottom: 20px; color: #fff; }
+    .post { margin-bottom: 30px; padding-bottom: 30px; border-bottom: 1px solid #222; }
+    .post:last-child { border-bottom: none; }
+    .post h3 { font-size: 18px; margin-bottom: 5px; }
+    .post h3 a { color: #fff; text-decoration: none; }
+    .post h3 a:hover { color: #4da6ff; }
+    .post .date { color: #555; font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/">darkeydel</a></h1>
+      <nav><a href="/">Home</a></nav>
+    </header>
+    
+    <section class="about">
+      <p>Security research, bug bounty, and CTF writeups.</p>
+    </section>
+    
+    <section class="posts">
+      <h2>Blog posts</h2>
+      
+      <div class="post">
+        <h3><a href="/parser-differentials-rce/">How to Exploit Parser Differentials</a></h3>
+        <p class="date">January 15, 2024</p>
+      </div>
+      
+      <div class="post">
+        <h3><a href="/http2-connect/">Playing with HTTP/2 Connect</a></h3>
+        <p class="date">February 20, 2024</p>
+      </div>
+      
+    </section>
+  </div>
+</body>
+</html>
