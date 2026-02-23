@@ -12,6 +12,28 @@ Parser differentials emerge when two (or more) parsers interpret the same input 
 
 > Different interpretation of messages or data streams by components breaks any assumptions that components adhere to a shared specification and so introduces inconsistent state and unanticipated computation.
 
+## Core Concepts from LangSec Survey (Ali & Smith, 2023)
+
+Based on the paper **"A Survey of Parser Differential Anti-Patterns"** (IEEE SPW 2023) by Sameed Ali and Sean W. Smith from Dartmouth College:
+
+### Why Parser Differentials are Hard to Detect
+
+1. **Challenges in abstraction** - Extracting parsers from complex codebases is difficult
+2. **Proving equivalence** - Mathematical proof of parser equivalence is challenging
+
+### Key Insight
+
+> Parser differentials are a novel unexpected bug resulting from the interaction of software components—sometimes even independent modules—which may individually appear bug-free.
+
+### Anti-Patterns That Cause Parser Differentials
+
+The survey identifies design anti-patterns that give rise to parser differentials:
+- **Mismorphism** - When parsers handle edge cases differently
+- **Protocol confusion** - Different interpretations between protocols
+- **Language barriers** - Different language implementations (e.g., Erlang vs JavaScript)
+
+---
+
 ## GitLab File Upload Vulnerability (CVE-2020-）
 
 ### File Uploads in GitLab
@@ -96,5 +118,6 @@ The rise of microservices leads to complex environments where the same HTTP requ
 ## References
 
 - [Original: How to exploit parser differentials](https://about.gitlab.com/blog/how-to-exploit-parser-differentials/)
+- [A Survey of Parser Differential Anti-Patterns](https://langsec.org/spw23/papers.html) - Sameed Ali & Sean W. Smith, IEEE SPW 2023
 - [CouchDB RCE](https://justi.cz/security/2017/11/14/couchdb-rce-npm.html)
 - [HTTP Desync Attacks](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn)
