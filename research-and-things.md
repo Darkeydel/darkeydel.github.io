@@ -1,24 +1,20 @@
 ---
-title: Home
+title: Research & Things
 layout: page
-description: Security research blog
+permalink: /research-and-things/
 ---
 
-<h2>Research and Writeups on Web Security, Bug Bounty and Some Challenges/CTF's</h2>
-
-<p>I will share some of my findings here, do not hesitate to contact me on X or by email if needed.</p>
-
-<h3>Latest Posts</h3>
-
 <div class="archive">
+  <h1 class="page__title">Research & Things</h1>
+  
   {% assign sorted_posts = site.posts | sort: "date" | reverse %}
-  {% for post in sorted_posts limit: 10 %}
+  {% for post in sorted_posts %}
   <div class="list__item">
     <article class="archive__item" itemscope itemtype="http://schema.org/CreativeWork">
       <h2 class="archive__item-title" itemprop="headline">
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ post.title }}</a>
       </h2>
-      <p>Published in <i>{{ site.title }}</i>, {{ post.date | date: "%B %d, %Y" }}</p>
+      <p>Published in <i>{{ site.title }}</i>, {{ post.date | date: "%Y" }}</p>
       {% if post.description %}
       <p class="archive__item-excerpt" itemprop="description">{{ post.description }}</p>
       {% endif %}

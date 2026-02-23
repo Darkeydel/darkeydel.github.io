@@ -1,3 +1,91 @@
 title: darkeydel Security Research
 description: Critical security findings and research
-author: Sanjit
+
+url: "https://darkeydel.github.io"
+baseurl: ""
+repository: "Darkeydel/darkeydel.github.io"
+
+future: true
+show_excerpts: true
+timezone: America/New_York
+
+markdown: kramdown
+highlighter: rouge
+lsi: false
+safe: true
+
+# Academic Pages theme settings
+name: "Sanjit"
+author:
+  name: "Sanjit"
+  bio: "Security researcher"
+  location: "/"
+  avatar: "images/avatar.png"
+  links:
+    - label: "Email"
+      icon: "fas fa-envelope"
+      url: "mailto:sanjit@example.com"
+    - label: "LinkedIn"
+      icon: "fab fa-linkedin"
+      url: "https://linkedin.com/in/sanjit"
+    - label: "X (Twitter)"
+      icon: "fab fa-x-twitter"
+      url: "https://twitter.com/sanjit"
+
+# Navigation
+navigation:
+  - title: "Home"
+    url: "/"
+  - title: "Research & Things"
+    url: "/research-and-things/"
+  - title: "Thoughts"
+    url: "/thoughts/"
+  - title: "Writeups"
+    url: "/writeups/"
+  - title: "About"
+    url: "/about/"
+
+# Social links
+twitter:
+  username: sanjit
+github:
+  repo: Darkeydel/darkeydel.github.io
+
+# Collections
+collections:
+  posts:
+    output: true
+    permalink: /:title/
+  portfolio:
+    output: true
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      author: Sanjit
+      categories: []
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-redirect-from
+
+# Exclude
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/

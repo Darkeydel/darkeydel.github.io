@@ -1,0 +1,34 @@
+<div itemscope itemtype="http://schema.org/Person">
+  {% if site.author.avatar %}
+  <div class="author__avatar">
+    <img src="{{ site.author.avatar | relative_url }}" class="author__avatar" alt="{{ site.author.name }}">
+  </div>
+  {% endif %}
+  
+  <div class="author__content">
+    <h3 class="author__name">{{ site.author.name }}</h3>
+    {% if site.author.bio %}
+    <p class="author__bio">{{ site.author.bio }}</p>
+    {% endif %}
+  </div>
+  
+  <div class="author__urls-wrapper">
+    <ul class="author__urls social-icons">
+      {% if site.author.location %}
+      <li class="author__desktop">
+        <i class="fas fa-location-dot icon-pad-right" aria-hidden="true"></i>{{ site.author.location }}
+      </li>
+      {% endif %}
+      
+      {% for link in site.author.links %}
+        {% if link.label %}
+        <li>
+          <a href="{{ link.url }}" target="_blank">
+            <i class="{{ link.icon }} icon-pad-right" aria-hidden="true"></i>{{ link.label }}
+          </a>
+        </li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>

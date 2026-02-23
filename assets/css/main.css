@@ -1,0 +1,330 @@
+/* Base styles */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+  margin: 0;
+  padding: 0;
+}
+
+body.no-js {
+  display: block;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; }
+h3 { font-size: 1.25em; }
+
+a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Layout */
+.masthead {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 0.5em 1em;
+}
+
+.masthead__inner-wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.masthead__menu {
+  flex: 1;
+}
+
+.greedy-nav {
+  position: relative;
+}
+
+.greedy-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.greedy-nav li {
+  margin: 0;
+}
+
+.masthead__menu-item {
+  display: inline-block;
+  padding: 0.5em 1em;
+}
+
+.masthead__menu-item--lg {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.masthead__menu-item a {
+  color: #333;
+}
+
+.masthead__menu-item a:hover {
+  text-decoration: none;
+  color: #007bff;
+}
+
+#main {
+  max-width: 1280px;
+  margin: 2em auto;
+  padding: 0 1em;
+  display: flex;
+  gap: 2em;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  flex-shrink: 0;
+}
+
+.author__avatar {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.author__avatar img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.author__content {
+  text-align: center;
+}
+
+.author__name {
+  margin: 0;
+  font-size: 1.25em;
+}
+
+.author__bio {
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 0.5em;
+}
+
+.author__urls {
+  list-style: none;
+  padding: 0;
+  margin-top: 1em;
+}
+
+.author__urls li {
+  padding: 0.25em 0;
+}
+
+.author__urls a {
+  color: #333;
+}
+
+.icon-pad-right {
+  margin-right: 0.5em;
+  width: 20px;
+  text-align: center;
+}
+
+.author__desktop {
+  color: #666;
+}
+
+/* Page content */
+.page__content {
+  flex: 1;
+  min-width: 0;
+}
+
+.page__title {
+  margin-top: 0;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5em;
+}
+
+.page__meta {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.page__footer {
+  background-color: #f9f9f9;
+  padding: 2em 1em;
+  text-align: center;
+  margin-top: 3em;
+}
+
+.page__footer-copyright {
+  color: #666;
+  font-size: 0.85em;
+}
+
+/* Archive / Post lists */
+.archive {
+  margin-top: 1em;
+}
+
+.list__item {
+  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid #eee;
+}
+
+.archive__item-title {
+  margin: 0 0 0.25em;
+  font-size: 1.1em;
+}
+
+.archive__item-excerpt {
+  margin: 0.5em 0 0;
+  color: #555;
+}
+
+.archive__item p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Post styles */
+.post__title {
+  margin-top: 0;
+}
+
+.post__meta {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.post__content {
+  margin-top: 2em;
+}
+
+.post__content h2 {
+  margin-top: 1.5em;
+  padding-bottom: 0.5em;
+  border-bottom: 1px solid #eee;
+}
+
+.post__content pre {
+  background-color: #f5f5f5;
+  padding: 1em;
+  overflow-x: auto;
+  border-radius: 4px;
+}
+
+.post__content code {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.9em;
+}
+
+.post-categories {
+  margin-top: 2em;
+  padding-top: 1em;
+  border-top: 1px solid #eee;
+}
+
+.label {
+  background-color: #eee;
+  padding: 0.2em 0.5em;
+  border-radius: 3px;
+  font-size: 0.8em;
+  margin-right: 0.5em;
+}
+
+/* Sticky sidebar */
+.sticky {
+  position: sticky;
+  top: 1em;
+  align-self: flex-start;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  #main {
+    flex-direction: column;
+  }
+  
+  .sidebar {
+    width: 100%;
+    order: 2;
+  }
+  
+  .masthead__menu-item--lg {
+    font-size: 1em;
+  }
+  
+  .masthead__menu-item {
+    padding: 0.5em;
+    font-size: 0.9em;
+  }
+}
+
+/* Navigation button for mobile */
+.greedy-nav button {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.navicon {
+  width: 20px;
+  height: 2px;
+  background-color: #333;
+  position: relative;
+}
+
+.navicon::before,
+.navicon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #333;
+  left: 0;
+}
+
+.navicon::before {
+  top: -6px;
+}
+
+.navicon::after {
+  top: 6px;
+}
+
+@media (max-width: 600px) {
+  .greedy-nav button {
+    display: block;
+  }
+}
