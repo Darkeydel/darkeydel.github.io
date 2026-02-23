@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Playing with HTTP/2 Connect - darkeydel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.7; padding: 40px 20px; }
+    .container { max-width: 700px; margin: 0 auto; }
+    a { color: #4da6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header { padding-bottom: 20px; border-bottom: 1px solid #222; margin-bottom: 30px; }
+    header h1 { font-size: 24px; font-weight: 600; }
+    header a { color: #fff; text-decoration: none; }
+    header a:hover { text-decoration: none; }
+    nav { margin-top: 15px; }
+    nav a { color: #666; margin-right: 20px; font-size: 14px; }
+    nav a:hover { color: #999; }
+    .post-date { color: #555; font-size: 14px; margin-bottom: 20px; }
+    h2 { color: #fff; font-size: 20px; margin: 30px 0 15px; }
+    code { background: #1a1a1a; padding: 2px 6px; border-radius: 3px; font-size: 14px; }
+    pre { background: #1a1a1a; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 15px 0; }
+    pre code { background: none; padding: 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/">darkeydel</a></h1>
+      <nav><a href="/">Home</a></nav>
+    </header>
+    
+    <article>
+      <h1>Playing with HTTP/2 Connect</h1>
+      <p class="post-date">February 20, 2024</p>
+      
+      <p>In HTTP/1, the CONNECT method instructs a proxy to establish a TCP tunnel to a requested target. Once the tunnel is up, the proxy blindly forwards raw traffic in both directions. This mechanism is most commonly used to tunnel TLS traffic through forwarding proxies.</p>
+
+<p>While digging through the HTTP/2 specification (RFC 9113), I noticed it also features the CONNECT method but with a slight twist. Unlike its predecessor, HTTP/2 CONNECT doesn't hijack the entire TCP connection - it operates on a single stream. This subtle difference piqued my curiosity.</p>
+
+<h2 id="a-typical-http1-connect-request">A typical HTTP/1 CONNECT request</h2>
+
+<pre><code>CONNECT google.de:443 HTTP/1.1
+Host: google.de:443
+User-Agent: curl/8.5.0</code></pre>
+
+<p>The key difference in HTTP/2 is that CONNECT creates a stream rather than a full connection, allowing for more granular control over tunneled connections.</p>
+
+    </article>
+  </div>
+</body>
+</html>

