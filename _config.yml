@@ -5,6 +5,9 @@ url: "https://darkeydel.github.io"
 baseurl: ""
 repository: "Darkeydel/darkeydel.github.io"
 
+# Disable theme
+theme: null
+
 future: true
 show_excerpts: true
 timezone: America/New_York
