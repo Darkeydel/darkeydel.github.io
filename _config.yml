@@ -39,14 +39,14 @@ defaults:
       path: ""
       type: posts
     values:
-      layout: post
+      layout: default
       author: Sanjit
       categories: []
   - scope:
       path: ""
       type: pages
     values:
-      layout: page
+      layout: default
 
 # Plugins
 plugins:
