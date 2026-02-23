@@ -80,6 +80,14 @@ plugins:
   - jekyll-sitemap
   - jekyll-redirect-from
 
+# Footer
+footer:
+  copyright: ""
+
+# Custom styles
+sass:
+  style: compressed
+
 # Exclude
 exclude:
   - Gemfile
@@ -89,3 +97,7 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
+
+# Custom CSS
+head_scripts:
+  - /assets/css/style.css
