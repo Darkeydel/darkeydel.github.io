@@ -5,7 +5,6 @@ permalink: /writeups/
 ---
 
 <div class="archive">
-  <h1 class="page__title">Writeups</h1>
   <p>Bug bounty findings and vulnerability disclosures.</p>
   
   {% assign writeups = site.posts | where: "categories", "writeup" | sort: "date" | reverse %}

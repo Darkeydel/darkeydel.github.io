@@ -5,7 +5,6 @@ permalink: /thoughts/
 ---
 
 <div class="archive">
-  <h1 class="page__title">Thoughts</h1>
   <p>Security insights, opinions, and musings.</p>
   
   {% assign thoughts = site.posts | where: "categories", "thoughts" | sort: "date" | reverse %}

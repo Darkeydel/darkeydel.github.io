@@ -5,8 +5,6 @@ permalink: /research-and-things/
 ---
 
 <div class="archive">
-  <h1 class="page__title">Research & Things</h1>
-  
   {% assign sorted_posts = site.posts | sort: "date" | reverse %}
   {% for post in sorted_posts %}
   <div class="list__item">
