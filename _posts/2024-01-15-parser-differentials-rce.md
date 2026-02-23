@@ -6,28 +6,11 @@ categories:
   - Parser Differential
 ---
 
-*Based on "A Survey of Parser Differential Anti-Patterns" - Sameed Ali & Sean W. Smith, IEEE SPW 2023*
-
 ## Definition
 
 Parser differentials emerge when two (or more) parsers interpret the same input in different ways. The term originates from the [Language-theoretic Security approach](http://langsec.org).
 
 > Different interpretation of messages or data streams by components breaks any assumptions that components adhere to a shared specification and so introduces inconsistent state and unanticipated computation.
-
-## Core Concepts from LangSec Survey (Ali & Smith, 2023)
-
-Based on the paper **"A Survey of Parser Differential Anti-Patterns"** (IEEE SPW 2023) by Sameed Ali and Sean W. Smith from Dartmouth College:
-
-### Why Parser Differentials are Hard to Detect
-
-1. **Challenges in abstraction** - Extracting parsers from complex codebases is difficult
-2. **Proving equivalence** - Mathematical proof of parser equivalence is challenging
-
-### Key Insight
-
-> Parser differentials are a novel unexpected bug resulting from the interaction of software components—sometimes even independent modules—which may individually appear bug-free.
-
----
 
 ## GitLab File Upload Vulnerability (CVE-2020-）
 
